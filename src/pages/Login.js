@@ -1,4 +1,4 @@
-import { useState } from "react"; // untuk menyimpan inputan
+import { useState, useEffect } from "react"; // untuk menyimpan inputan
 import axios from "axios"; // digunakan untuk transfer data dari frontend ke backend
 
 export default function Login() {
@@ -13,14 +13,18 @@ export default function Login() {
     // endpoint : http://localhost:8000/user/auth
     // request : username and password
     // response : logged and token
+
+    //prepare request
     let request = {
       username : username,
       password : password
     }
+    // prepare alamat
     let endpoint = `http://localhost:8000/user/auth`
     // sending data
     axios.post(endpoint, request)
     .then(response => {
+        // response.data.(apa yang ingin diambil)
       if(response.data.logged === true){
         let token = response.data.token
         // disimpan di local storage
@@ -36,11 +40,11 @@ export default function Login() {
   }
 
   return (
-    <body className="bg-danger">
-      <div className="container" style={{fontFamily: 'poppins'}}>
+    <body>
+      <div className="container mt-5" style={{fontFamily: 'poppins'}}>
       <div className="card">
-        <div className="card-header" style={{ background: `lylac` }}>
-          <h3 className="text-dark">Sign in</h3>
+        <div className="card-header bg-primary">
+          <h3 className="text-white">Sign in</h3>
         </div>
         <div className="card-body">
           <form onSubmit={ev => loginProcess(ev)}>
