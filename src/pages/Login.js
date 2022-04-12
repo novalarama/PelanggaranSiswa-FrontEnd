@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; // untuk menyimpan inputan
+import { useState } from "react"; // untuk menyimpan inputan
 import axios from "axios"; // digunakan untuk transfer data dari frontend ke backend
 
 export default function Login() {
