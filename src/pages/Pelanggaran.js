@@ -5,6 +5,9 @@ import { Modal } from "bootstrap";
 import Navbar from "../component/Navbar"
 
 export default function Pelanggaran() {
+  if(!localStorage.getItem(`token-pelanggaran`)){
+    window.location=`./signin`
+  }
   let [pelanggaran, setPelanggaran] = useState([]);
   let [message, setMessage] = useState("")
 

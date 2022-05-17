@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function PelanggaranSiswa (){
+    if(!localStorage.getItem(`token-pelanggaran`)){
+        window.location=`./signin`
+      }
     let [siswa, setSiswa] = useState([])
     let [pelanggaran, setPelanggaran] = useState([])
     let [selectedSiswa, setSelectedSiswa] = useState("")

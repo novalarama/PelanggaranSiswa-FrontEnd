@@ -5,6 +5,9 @@ import {Toast, Modal} from "bootstrap"
 import Navbar from "../component/Navbar"
 
 export default function User() {
+  if(!localStorage.getItem(`token-pelanggaran`)){
+    window.location=`./signin`
+  }
   let [User, dataUser] = useState([]);
 
   let [idUser, setIdUser] = useState(0);

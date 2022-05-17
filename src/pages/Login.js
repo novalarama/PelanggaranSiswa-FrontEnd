@@ -29,7 +29,7 @@ export default function Login() {
         let token = response.data.token
         // disimpan di local storage
         localStorage.setItem(`token-pelanggaran`,token)
-        let dataUser = JSON.stringify(response.data.user)
+        let dataUser = JSON.stringify(response.data.dataUser)
         localStorage.setItem(`user-pelanggaran`, dataUser)
         alert('Login Successfull');window.location='./list'
       }else {

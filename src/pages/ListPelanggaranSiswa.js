@@ -3,9 +3,11 @@ import axios from "axios";
 import { Toast } from "bootstrap";
 
 import Navbar from "../component/Navbar";
-import NewNavbar from "../component/NewNavbar";
 
 export default function ListPelanggaranSiswa() {
+  if(!localStorage.getItem(`token-pelanggaran`)){
+    window.location=`./signin`
+  }
   let [list, setList] = useState([]);
   let [message, setMessage] = useState("")
 

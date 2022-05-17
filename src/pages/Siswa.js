@@ -6,6 +6,9 @@ import Navbar from "../component/Navbar";
 import App from "../App.css";
 
 export default function Siswa() {
+  if(!localStorage.getItem(`token-pelanggaran`)){
+    window.location=`./signin`
+  }
   let [siswa, setSiswa] = useState([]);
 
   let [idSiswa, setIdSiswa] = useState("");
