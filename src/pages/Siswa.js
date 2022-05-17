@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Toast } from "bootstrap";
 import { Modal } from "bootstrap";
+import Navbar from "../component/Navbar";
+import App from "../App.css";
 
 export default function Siswa() {
   let [siswa, setSiswa] = useState([]);
@@ -87,11 +89,11 @@ export default function Siswa() {
       //sending data
       axios
         .delete(endpoint, authorization)
-        .then(response => {
+        .then((response) => {
           showToast(response.data.message);
           getSiswa();
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
     }
   };
 
@@ -124,7 +126,7 @@ export default function Siswa() {
       request.append(`nama`, nama);
       request.append(`kelas`, kelas);
       request.append(`poin`, poin);
-      if(uploadGambar === true){
+      if (uploadGambar === true) {
         request.append(`image`, gambar);
       }
 
@@ -147,7 +149,7 @@ export default function Siswa() {
   }, []);
 
   return (
-    <div className="container-fluid" style={{ fontFamily: "poppins" }}>
+    <div className="container" style={{ fontFamily: "Plus Jakarta Display" }}>
       {/* start component toast untuk menggantikan alert*/}
       <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 1 }}>
         <div className="toast bg-light" id="myToast">
@@ -157,20 +159,29 @@ export default function Siswa() {
           <div className="toast-body">{message}</div>
         </div>
       </div>
+      <div>
+        <Navbar />
+      </div>
       {/* <div className="row card"> */}
-      <div className="card-header " style={{ background: `#036666` }}>
+      <div
+        className="card-header form-control rounded-3"
+        style={{ background: `#036666` }}
+      >
         <div className="row">
-          <div className="col-lg-8">
-            <h2 className="text-white mx-2 my-2">Daftar Siswa</h2>
+          <div className="col-lg-10">
+            <h2 className="text-white mx-2 my-2"><b>Daftar Siswa</b></h2>
           </div>
-          <div className="col-lg-4">
-            <button className="btn btn-success justify-content-end" onClick={() => tambahData()}>
+          <div className="col-lg-2">
+            <button
+              className="btn btn-success justify-content-end mx-2 my-2"
+              onClick={() => tambahData()}
+            >
               <span className="fa fa-plus"></span>Tambah Siswa
             </button>
           </div>
         </div>
       </div>
-      <div className="row mx-0" style={{ background: `#99e2b4` }}>
+      <div className="row mx-0 my-3" style={{ background: `#99e2b4` }}>
         {siswa.map((item) => (
           <div className="col-4 ">
             <div className="card-body" style={{ background: `#99e2b4` }}>
@@ -220,77 +231,78 @@ export default function Siswa() {
                   </div>
                 </li>
               </ul>
-
-             
             </div>
           </div>
         ))}
 
-<div className="modal" id="modal-siswa">
-                <div className="modal-dialog modal-md">
-                  <div className="modal-content">
-                    <div className="modal-header bg-success">
-                      <h4 className="text-white">Form Siswa</h4>
-                    </div>
-                    <div className="modal-body">
-                      <form onSubmit={(ev) => simpanData(ev)}>
-                        NIS
-                        <input
-                          type="number"
-                          className="form-control mb-2"
-                          required
-                          onChange={(e) => setNis(e.target.value)}
-                          value={nis}
-                        />
-                        Nama
-                        <input
-                          type="text"
-                          className="form-control mb-2"
-                          required
-                          onChange={(e) => setNama(e.target.value)}
-                          value={nama}
-                        />
-                        Kelas
-                        <input
-                          type="text"
-                          className="form-control mb-2"
-                          required
-                          onChange={(e) => setKelas(e.target.value)}
-                          value={kelas}
-                        />
-                        Poin
-                        <input
-                          type="number"
-                          className="form-control mb-2"
-                          required
-                          onChange={(e) => setPoin(e.target.value)}
-                          value={poin}
-                        />
-                        Gambar
-                        <input
-                          type="file"
-                          className={`form-control mb-2 ${uploadGambar ? `` : `d-none`}`}
-                          required={uploadGambar}
-                          accept="image/*"
-                          onChange={(e) => setGambar(e.target.files[0])}
-                        />
-
-                        <button type="button" className={`btn btn-dark btn-sm ${uploadGambar ? `d-none` : ``}`} onClick={() => setUploadGambar(true)}>
-                          Click to re-upload image
-                        </button>
-                        <br />
-
-                        <button
-                          type="submit"
-                          className="btn btn-outline-success"
-                        >
-                          <span className="fa fa-check"></span>
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+        <div className="modal" id="modal-siswa">
+          <div className="modal-dialog modal-md">
+            <div className="modal-content">
+              <div className="modal-header bg-success">
+                <h4 className="text-white">Form Siswa</h4>
               </div>
+              <div className="modal-body">
+                <form onSubmit={(ev) => simpanData(ev)}>
+                  NIS
+                  <input
+                    type="number"
+                    className="form-control mb-2"
+                    required
+                    onChange={(e) => setNis(e.target.value)}
+                    value={nis}
+                  />
+                  Nama
+                  <input
+                    type="text"
+                    className="form-control mb-2"
+                    required
+                    onChange={(e) => setNama(e.target.value)}
+                    value={nama}
+                  />
+                  Kelas
+                  <input
+                    type="text"
+                    className="form-control mb-2"
+                    required
+                    onChange={(e) => setKelas(e.target.value)}
+                    value={kelas}
+                  />
+                  Poin
+                  <input
+                    type="number"
+                    className="form-control mb-2"
+                    required
+                    onChange={(e) => setPoin(e.target.value)}
+                    value={poin}
+                  />
+                  Gambar
+                  <input
+                    type="file"
+                    className={`form-control mb-2 ${
+                      uploadGambar ? `` : `d-none`
+                    }`}
+                    required={uploadGambar}
+                    accept="image/*"
+                    onChange={(e) => setGambar(e.target.files[0])}
+                  />
+                  <button
+                    type="button"
+                    className={`btn btn-dark btn-sm ${
+                      uploadGambar ? `d-none` : ``
+                    }`}
+                    onClick={() => setUploadGambar(true)}
+                  >
+                    Click to re-upload image
+                  </button>
+                  <br />
+                  <button type="submit" className="btn btn-outline-success">
+                    <span className="fa fa-check"></span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       {/* </div> */}
     </div>

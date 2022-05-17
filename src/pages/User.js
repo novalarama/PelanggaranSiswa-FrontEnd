@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {Toast, Modal} from "bootstrap"
 
+import Navbar from "../component/Navbar"
+
 export default function User() {
   let [User, dataUser] = useState([]);
 
@@ -145,7 +147,7 @@ export default function User() {
   }, []);
 
   return (
-    <div className="container-fluid rounded" style={{fontFamily:'poppins'}}>
+    <div className="container rounded" style={{fontFamily:'Plus Jakarta Display'}}>
       {/* start component toast untuk menggantikan alert*/}
       <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 1 }}>
         <div className="toast bg-light" id="myToast">
@@ -155,38 +157,40 @@ export default function User() {
           <div className="toast-body">{message}</div>
         </div>
       </div>
-      <div className="card m-2">
-        <div className="card-header bg-warning">
+
+      <Navbar />
+      {/* <div className="card m-2"> */}
+        <div className="card-header rounded-3" style={{ background: `#036666` }}>
         <div className="row">
-          <div className="col-lg-8">
-            <h2 className="text-white mx-2 my-2">Daftar User</h2>
+          <div className="col-lg-10">
+            <h2 className="text-white mx-2 my-2"><b>Daftar User</b></h2>
           </div>
-          <div className="col-lg-4">
-            <button className="btn btn-success justify-content-end" onClick={() => tambahData()}>
-              <span className="fa fa-plus"></span>Tambah Siswa
+          <div className="col-lg-2">
+            <button className="btn btn-success justify-content-end mx-2 my-2" onClick={() => tambahData()}>
+              <span className="fa fa-plus"></span>Tambah User
             </button>
           </div>
         </div>
         </div>
-        <div className="card-body">
+        <div className="card-body" style={{ background: `#99e2b4` }}>
           <ul className="list-group">
             {User.map(item => (
-              <li className="list-group-item">
+              <li className="list-group-item rounded-2" style={{ background: `#358f80` }}>
               <div className="row">
-                <div className="col-lg-1">
-                  <small className="text-secondary">ID User</small>
+                <div className="col-lg-1 text-white">
+                  <small>ID User</small>
                   <h5>{item.id_user}</h5>
                 </div>
-                <div className="col-lg-4">
-                  <small className="text-secondary">Nama User</small>
+                <div className="col-lg-4 text-white">
+                  <small>Nama User</small>
                   <h5>{item.nama_user}</h5>
                 </div>
-                <div className="col-lg-4">
-                  <small className="text-secondary">Username User</small>
+                <div className="col-lg-4 text-white">
+                  <small>Username User</small>
                   <h5>{item.username}</h5>
                 </div>
-                <div className="col-lg-3">
-                  <small className="text-info">Action</small>
+                <div className="col-lg-3 text-white">
+                  <small>Action</small>
                     <br />
                     <button className="btn btn-sm btn-warning"
                     onClick={() => editData(item)}>
@@ -252,7 +256,7 @@ export default function User() {
                 </div>
               </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

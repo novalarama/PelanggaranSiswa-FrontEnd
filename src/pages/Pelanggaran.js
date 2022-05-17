@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Toast } from "bootstrap";
 import { Modal } from "bootstrap";
+import Navbar from "../component/Navbar"
 
 export default function Pelanggaran() {
   let [pelanggaran, setPelanggaran] = useState([]);
@@ -144,7 +145,7 @@ export default function Pelanggaran() {
     getData();
   }, []);
   return (
-    <div className="container-fluid" style={{ fontFamily: "poppins" }}>
+    <div className="container" style={{ fontFamily: "Plus Jakarta Display" }}>
       {/* start component toast untuk menggantikan alert*/}
       <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 1 }}>
         <div className="toast bg-light" id="myToast">
@@ -155,29 +156,39 @@ export default function Pelanggaran() {
         </div>
       </div>
       {/* end component toast */}
-      <div className="card m-2">
-        <div className="card-body bg-info">
-          <h2 className="text-white">Jenis Pelanggaran</h2>
+      {/* <div className="card m-2" > */}
+      <Navbar />
+        <div className="card-header rounded-3" style={{ background: `#036666` }}>
+          <div className="row">
+              <div className="col-lg-10">
+            <h2 className="text-white mx-2 my-2"><b>Jenis Pelanggaran</b></h2>
+          </div>
+          <div className="col-lg-2">
+              <button className="btn btn-success justify-content-end mx-2 my-2" onClick={() => tambahData()}>
+                <span className="fa fa-plus"></span>Tambah Pelanggaran
+            </button>
+          </div>
+          </div>
         </div>
-        <div className="card-body">
+        <div className="card-body" style={{ background: `#99e2b4` }}>
           <ul className="list-group">
             {pelanggaran.map((item) => (
-              <li className="list-group-item">
+              <li className="list-group-item mt-2 rounded-2" style={{ background: `#358f80` }}>
                 <div className="row">
-                  <div className="col-2">
-                    <small className="text-info">ID</small>
+                  <div className="col-2 text-white">
+                    <small>ID</small>
                     <h5>{item.id_pelanggaran}</h5>
                   </div>
-                  <div className="col-6">
-                    <small className="text-info">Jenis Pelanggaran</small>
+                  <div className="col-6 text-white">
+                    <small>Jenis Pelanggaran</small>
                     <h5>{item.nama_pelanggaran}</h5>
                   </div>
-                  <div className="col-2">
-                    <small className="text-info">Poin</small>
+                  <div className="col-2 text-white">
+                    <small>Poin</small>
                     <h5>{item.poin}</h5>
                   </div>
-                  <div className="col-2">
-                    <small className="text-info">Action</small>
+                  <div className="col-2 text-white">
+                    <small>Action</small>
                     <br />
                     <button className="btn btn-sm btn-warning"
                     onClick={() => editData(item)}>
@@ -192,12 +203,6 @@ export default function Pelanggaran() {
               </li>
             ))}
           </ul>
-
-          {/* button tambah  */}
-          <button className="btn btn-sm btn-success mt-3"
-          onClick={() => tambahData()}>
-            <span className="fa fa-plus"></span> Tambah Data
-          </button>
 
           {/* Add modals for create new data */}
           <div className="modal" id="modalPelanggaran">
@@ -227,7 +232,7 @@ export default function Pelanggaran() {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

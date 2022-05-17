@@ -29,7 +29,9 @@ export default function Login() {
         let token = response.data.token
         // disimpan di local storage
         localStorage.setItem(`token-pelanggaran`,token)
-        alert('Login Successfull')
+        let dataUser = JSON.stringify(response.data.user)
+        localStorage.setItem(`user-pelanggaran`, dataUser)
+        alert('Login Successfull');window.location='./list'
       }else {
         alert(response.data.message)
       }
@@ -40,15 +42,15 @@ export default function Login() {
   }
 
   return (
-    <body>
-      <div className="container mt-5" style={{fontFamily: 'poppins'}}>
-      <div className="card">
-        <div className="card-header bg-primary">
-          <h3 className="text-white">Sign in</h3>
+      <div className="container mt-10" style={{fontFamily: 'Plus Jakarta Display', marginTop: '40px'}}>
+      <h1 className="text-center"><b>TATIB.</b></h1>
+      <div className="card col-lg-8 mx-auto" style={{background: `#036666`}}>
+        <div className="card-header" >
+          <h3 className="text-white"><b>Sign in</b></h3>
         </div>
         <div className="card-body">
           <form onSubmit={ev => loginProcess(ev)}>
-            <h5>Username</h5>
+            <h5 className="text-white">Username</h5>
             <input
               type={`text`}
               className="form-control mb-2"
@@ -57,7 +59,7 @@ export default function Login() {
               onChange={(ev) => setUsername(ev.target.value)}
             />
 
-            <h5>Password</h5>
+            <h5 className="text-white">Password</h5>
             <input
               type={`password`}
               className="form-control mb-2"
@@ -73,6 +75,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-    </body>
   );
 }
