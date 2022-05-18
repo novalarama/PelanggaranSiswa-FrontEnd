@@ -141,13 +141,7 @@ export default function User() {
     }
   }
 
-  useEffect(() => {
-    let modal = new Modal(
-      document.getElementById("modal-user")
-    )
-    setModal(modal)
-    getData();
-  }, []);
+ 
 
   return (
     <div className="container rounded" style={{fontFamily:'Plus Jakarta Display'}}>
